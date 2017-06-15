@@ -29,7 +29,7 @@ var grabValues = function() {
   if (validateFields(inputs[0], relation[0])) {
     addFamilyMemember(inputs[0], inputs[1], relation[0])
   } else {
-    alert('missed fields or age has to be positive')
+    alert('missed fields or age has to be positive');
   }
   clearValues(form[0]);
 };
@@ -47,8 +47,8 @@ var addFamilyMemember = function(age, smoker, relation) {
     member['smoker'] = false;
   }
   member['relation'] = relation.value;
-  member['age'] = age.value
-  family[familyMember] = member
+  member['age'] = age.value;
+  family[familyMember] = member;
   addMemberToDom(member);
 };
 
@@ -56,7 +56,7 @@ var createObjectKey = function() {
   var keys = Object.keys(family);
   var last;
   if (keys.length == 0) {
-    last = 1
+    last = 1;
   } else {
     last = parseInt(keys[keys.length-1]) + 1;
   };
@@ -64,7 +64,7 @@ var createObjectKey = function() {
 };
 
 var validateFields = function(age, relation) {
-  checkAge = parseFloat(age.value)
+  checkAge = parseFloat(age.value);
   if (isInteger(checkAge) == false ||
       checkAge == false ||
       checkAge < 1 ||
@@ -83,7 +83,7 @@ var addMemberToDom = function() {
   var div = document.createElement('div');
   var divText = familyMember + '.' +'<br>' + 'Age: ' + member['age'] + '<br>'
     + 'Relation: ' + member['relation'] + '<br>'
-    + '<button class="delete">delete</button>'
+    + '<button class="delete">delete</button>';
   div.className = familyMember;
   div.innerHTML = divText;
   document.body.appendChild(div);
@@ -100,8 +100,7 @@ var removeFamilyMemember = function(element) {
 
 var submitFamily = function() {
   jsonFamily = JSON.stringify(family);
-  console.log(jsonFamily);
   pre = document.getElementsByClassName("debug");
-  pre[0].innerHTML = ''
+  pre[0].innerHTML = '';
   pre[0].innerHTML = jsonFamily;
 };
