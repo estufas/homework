@@ -40,6 +40,19 @@ var clearValues = function(form) {
 
 var addFamilyMemember = function(age, smoker, relation) {
   member = {};
+  familyMember = createObjectKey();
+  if (smoker.checked) {
+    member['smoker'] = true;
+  } else {
+    member['smoker'] = false;
+  }
+  member['relation'] = relation.value;
+  member['age'] = age.value
+  family[familyMember] = member
+  addMemberToDom(member);
+};
+
+var createObjectKey = function() {
   var keys = Object.keys(family);
   var last;
   if (keys.length == 0) {
@@ -47,24 +60,16 @@ var addFamilyMemember = function(age, smoker, relation) {
   } else {
     last = parseInt(keys[keys.length-1]) + 1;
   };
-  familyMember = last;
-  member['age'] = age.value
-  if (smoker.checked) {
-    member['smoker'] = true;
-  } else {
-    member['smoker'] = false;
-  }
-  member['relation'] = relation.value;
-  family[familyMember] = member
-  addMemberToDom(member);
+  return last;
 };
 
 var validateFields = function(age, relation) {
   checkAge = parseFloat(age.value)
-  if (isInteger(checkAge) == false || checkAge == false || checkAge < 1) {
-    return false;
-  }
-  if (relation.value == "") {
+  if (isInteger(checkAge) == false ||
+      checkAge == false ||
+      checkAge < 1 ||
+      relation.value == "")
+      {
     return false;
   }
   return true;
@@ -76,10 +81,10 @@ function isInteger(n) {
 
 var addMemberToDom = function() {
   var div = document.createElement('div');
-  div.className = familyMember;
   var divText = familyMember + '.' +'<br>' + 'Age: ' + member['age'] + '<br>'
-  + 'Relation: ' + member['relation'] + '<br>'
-  + '<button class="delete">delete</button>'
+    + 'Relation: ' + member['relation'] + '<br>'
+    + '<button class="delete">delete</button>'
+  div.className = familyMember;
   div.innerHTML = divText;
   document.body.appendChild(div);
 };
