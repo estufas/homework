@@ -10,7 +10,7 @@ function myHandler(e){
   var target = e.target || e.srcElement;
   if (target.className.match(/delete/)) {
     e.preventDefault();
-    removeFamilyMemember(target);
+    removeFamilyMemember(target.parentElement);
   } else if (target.className.match(/add/)) {
     e.preventDefault();
     grabValues();
@@ -75,7 +75,7 @@ var validateFields = function(age, relation) {
   return true;
 };
 
-function isInteger(n) {
+var isInteger = function(n) {
   return n === +n && n === (n|0);
 };
 
@@ -90,12 +90,16 @@ var addMemberToDom = function() {
 };
 
 var removeFamilyMemember = function(element) {
-  divClassName = parseInt(element.parentElement.className);
-  delete family[divClassName];
-  divRemove = element.parentElement;
-  divParent = element.parentElement.parentElement;
+  removeFamilyFromObject(element);
+  divRemove = element;
+  divParent = element.parentElement;
   divParent.removeChild(divRemove);
   submitFamily();
+};
+
+var removeFamilyFromObject = function(element) {
+  divClassName = parseInt(element.className);
+  delete family[divClassName];
 };
 
 var submitFamily = function() {
