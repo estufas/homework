@@ -1,0 +1,12 @@
+I created a OrderedDict called slcsp to maintain original order and later reuse
+when to find lowest rate. Also added a rate_area and state as key value pairs
+when imported the zips file.
+
+Created rate_area dict so determine and used it to filter the plans dict.
+
+Created plans dict filtered using rate areas dict and if plan is silver.
+While reading the plans file if the existing rate for a state in a rate area was
+cheaper then I replaced it other wise I ignored it.
+
+Plans dict was organized by rate area as key with value of states dict whose
+value was the cheapest silver rate. 

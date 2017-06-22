@@ -56,3 +56,10 @@ and should be left blank.
 
 We will want to compile your code from source and run it, so please include the
 complete instructions for doing so in a COMMENTS file.
+
+My Information
+----------------------
+
+Used Python 2.7.13
+included csv and collections packages which are included with Python
+macOS
